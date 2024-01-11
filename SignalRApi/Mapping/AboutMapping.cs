@@ -11,8 +11,6 @@ namespace SignalRApi.Mapping
             CreateMap<About, CreateAboutDto>().ReverseMap();
             CreateMap<About, GetAboutDto>().ReverseMap();
             CreateMap<About, UpdateAboutDto>().ReverseMap();
-
-
         }
     }
 }
