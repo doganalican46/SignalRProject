@@ -37,5 +37,36 @@ namespace SignalRApi.Controllers
             _bookingService.BAdd(booking);
             return Ok("Rezervasyon yapıldı...");
         }
+
+        [HttpGet]
+        public IActionResult DeleteBooking(int id) { 
+            var value=_bookingService.BGetByID(id);
+            _bookingService.BDelete(value);
+
+            return Ok("Rezervasyon silindi...");   
+        }
+
+        [HttpPut]
+        public IActionResult UpdateBooking(UpdateBookingDto updateBookingDto)
+        {
+            Booking booking = new Booking()
+            {
+                Mail=updateBookingDto.Mail,
+                ID=updateBookingDto.ID,
+                Name=updateBookingDto.Name,
+                PersonCount=updateBookingDto.PersonCount,
+                Phone=updateBookingDto.Phone,
+                Date=updateBookingDto.Date,
+            };   
+            _bookingService.BUpdate(booking);
+            return Ok("Rezervasyon başarıyla güncellendi...");
+
+        }
+
+        [HttpGet("GetBooking")]
+        public IActionResult GetBooking(int id) {
+            var value = _bookingService.BGetByID(id);
+            return Ok(value);   
+                }
     }
 }
